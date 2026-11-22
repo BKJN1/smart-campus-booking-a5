@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Assignment 05 — Argin Bekezhan</title>
+<style>
+@page { size: 1280px 720px; margin: 0; }
+:root{ --ink:#0f2a2e; --teal:#0d9488; --teal2:#ccfbf1; --mint:#f0fdfa; --rose:#be123c; --rose2:#ffe4e6; --amber:#b45309; --amber2:#fef3c7; --muted:#5b6b70; --line:#d7e3e5; --bg:#ffffff; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Calibri,Arial,sans-serif;color:var(--ink);background:#fff}
+.s{width:1280px;height:720px;padding:46px 60px 40px;position:relative;overflow:hidden;page-break-after:always;background:var(--bg)}
+.s.dark{background:var(--ink);color:#e6f4f1}
+h1{font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-.5px}
+h2{font-size:32px;font-weight:700;letter-spacing:-.3px;margin-bottom:6px}
+.kicker{font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:6px}
+.dark .kicker{color:#5eead4}
+.sub{font-size:16px;color:var(--muted);margin-bottom:18px}
+p,li{font-size:15px;line-height:1.42}
+ul{padding-left:20px} li{margin-bottom:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--mint);border-radius:14px;padding:16px 18px}
+.card.rose{background:var(--rose2)} .card.amber{background:var(--amber2)} .card.white{background:#fff;border:1px solid var(--line)}
+.card h3{font-size:17px;margin-bottom:6px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--ink);color:#fff;text-align:left;padding:6px 8px;font-weight:600}
+td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+code,.mono{font-family:Consolas,"Cascadia Mono",monospace;font-size:.92em;background:#eef5f5;border-radius:4px;padding:0 4px}
+pre{font-family:Consolas,"Cascadia Mono",monospace;font-size:12.5px;line-height:1.38;background:#0f2a2e;color:#d9f2ee;border-radius:10px;padding:12px 14px;white-space:pre-wrap}
+.big{font-size:54px;font-weight:800;color:var(--teal);line-height:1}
+.big.rose{color:var(--rose)}
+.lab{font-size:13px;color:var(--muted);margin-top:4px}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+.ok{background:#dcfce7;color:#166534}.bad{background:var(--rose2);color:var(--rose)}.warn{background:var(--amber2);color:var(--amber)}.unk{background:#e0e7ff;color:#3730a3}
+.foot{position:absolute;left:60px;right:60px;bottom:16px;font-size:11px;color:#8a9a9e;display:flex;justify-content:space-between}
+.dark .foot{color:#7fa8a2}
+img.shot{width:100%;border-radius:10px;border:1px solid var(--line)}
+.num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;font-weight:700;align-items:center;justify-content:center;margin-right:8px;flex:none}
+.row{display:flex;align-items:flex-start;margin-bottom:9px}
+a{color:inherit}
+.small{font-size:12.5px}
+</style></head><body>
+
+<!-- 1 TITLE -->
+<section class="s dark">
+  <div class="kicker" style="margin-top:40px">Software Engineering · Assignment #05</div>
+  <h1 style="font-size:46px;max-width:1000px">AI-assisted repository customization, agent readiness and software risk governance</h1>
+  <p style="font-size:19px;margin-top:14px;color:#a7d8d0">Smart Campus Room Availability (React + TypeScript + Vite)</p>
+  <div class="grid2" style="margin-top:44px;gap:40px">
+    <div style="font-size:18px;line-height:1.7">
+      <div><b>Full name:</b> Argin Bekezhan</div>
+      <div><b>Student ID:</b> 24B031649</div>
+      <div><b>Practice lessons:</b> Lesson #09 practice — 12 Nov 2026<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Lesson #10 practice — 19 Nov 2026<br><span style="font-size:15px;color:#a7d8d0">(Thursday class, 14:00–17:00)</span></div>
+    </div>
+    <div style="font-size:16px;line-height:1.7">
+      <div><b>Source code:</b><br><a href="https://github.com/BKJN1/smart-campus-booking-a5" style="color:#5eead4">github.com/BKJN1/smart-campus-booking-a5</a></div>
+      <div style="margin-top:8px"><b>Baseline:</b> tag <code style="background:#1d4247">baseline</code> = d5af111<br><b>Final:</b> tag <code style="background:#1d4247">final</code> = b38123e (branch main)</div>
+      <div style="margin-top:8px"><b>AI assistant:</b> Claude (Claude Code, model Claude Opus 5.5)</div>
+    </div>
+  </div>
+  <div class="foot"><span>Submitted 22 Nov 2026</span><span>1</span></div>
+</section>
+
+<!-- 2 SUMMARY -->
+<section class="s">
+  <div class="kicker">Summary</div>
+  <h2>Release decision: CONDITIONAL — two top risks fixed and verified</h2>
+  <p class="sub">The audit, the improvements and the decision all rest on command output saved in <code>docs/evidence/</code>.</p>
+  <div class="grid3" style="grid-template-columns:repeat(4,1fr);margin-top:8px">
+    <div class="card"><div class="big">34/34</div><div class="lab">tests pass (baseline: 19, and <code>npm test</code> did not exist)</div></div>
+    <div class="card"><div class="big">13</div><div class="lab">risk findings in 5 categories: 11 confirmed, 1 plausible, 1 unsupported</div></div>
+    <div class="card"><div class="big">1→0</div><div class="lab">high-severity vulnerabilities in production dependencies (<code>npm audit --omit=dev</code>)</div></div>
+    <div class="card"><div class="big">1→2</div><div class="lab">agent-readiness level (Baseline → Documented)</div></div>
+  </div>
+  <div class="grid2" style="margin-top:24px">
+    <div>
+      <h3 style="font-size:18px;margin-bottom:8px">What was done</h3>
+      <div class="row"><span class="num">1</span><p>Baseline preserved and every check run (Task 1)</p></div>
+      <div class="row"><span class="num">2</span><p>AGENTS.md + CLAUDE.md with safe and forbidden actions (Task 2)</p></div>
+      <div class="row"><span class="num">3</span><p>One refactoring: table-driven status view (Task 3)</p></div>
+      <div class="row"><span class="num">4</span><p>Read-only AI risk review → register of 13 findings (Tasks 4–5)</p></div>
+      <div class="row"><span class="num">5</span><p>Mitigations M1 and M2, tests written first (Task 7)</p></div>
+    </div>
+    <div>
+      <h3 style="font-size:18px;margin-bottom:8px">Commit history (main)</h3>
+<pre>d5af111 baseline: export, unchanged
+554fa93 docs: AGENTS.md, README, criteria, scripts
+eff0b31 refactor: table-driven status view
+d3504b3 fix: strict whole-minute input (M1)
+e03fee4 chore(deps): remove unused supabase (M2)
+fecaccd chore: harden agent instructions, .env.*
+b38123e docs: register, audit, decision, reflection</pre>
+    </div>
+  </div>
+  <div class="foot"><span>Argin Bekezhan · 24B031649</span><span>2</span></div>
+</section>
+
+<!-- 3 TASK 1 MAP -->
+<section class="s">
+  <div class="kicker">Task #01 · Baseline and context</div>
+  <h2>Repository map and baseline</h2>
+  <p class="sub">A small existing project: my Smart Campus app (Bolt.new export, tested in Practices 6–8). No secrets and no real personal data.</p>
+  <div class="grid2">
+<pre>index.html                 Vite entry HTML
+src/main.tsx               React entry point
+src/App.tsx                page: inputs, result card,
+                           timeline, bookings list
+src/components/TimeField.tsx  number input + HH:MM hint
+src/components/Timeline.tsx   24 h bar of bookings
+src/lib/booking.ts         domain rules (pure function)
+src/lib/booking.test.ts    19 Vitest cases (AC1–AC5)
+.claude/skills/            2 Claude Code skills (Practice 8)
+.bolt/                     Bolt template + prompt
+package.json / lock        react 18, vite 5.4, vitest 3.2,
+                           eslint 9, tailwind 3, supabase-js</pre>
+    <div>
+      <div class="card white" style="margin-bottom:14px">
+        <h3>Entry points and modules</h3>
+        <p><code>index.html → main.tsx → App.tsx</code>. App.tsx calls <code>checkAvailability(start, end, now, blocked, bookings)</code>, which holds all the booking rules: AC1 valid interval · AC2 ≤ 120 min · AC3 blocked room · AC4 no overlap · AC5 inputs never changed.</p>
+      </div>
+      <div class="card white">
+        <h3>Build scripts (baseline)</h3>
+        <p><code>dev</code>, <code>build</code>, <code>lint</code>, <code>typecheck</code>, <code>preview</code> — <b>no <code>test</code> script</b>, even though vitest is installed.</p>
+        <p style="margin-top:6px">Baseline preserved as git tag <code>baseline</code> (d5af111), committed before any change. Node v24.13.1, npm 11.8.0.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Evidence: README.md · git show baseline</span><span>3</span></div>
+</section>
+
+<!-- 4 TASK 1 CHECKS -->
+<section class="s">
+  <div class="kicker">Task #01 · Baseline and context</div>
+  <h2>Baseline checks: exact commands and actual results</h2>
+  <table style="margin-top:10px">
+    <tr><th style="width:30%">Command</th><th style="width:30%">Actual result</th><th>Evidence file (docs/evidence/baseline/)</th></tr>
+    <tr><td><code>npm ci</code></td><td>exit 0; 326 packages; “25 vulnerabilities”</td><td>00-npm-ci.txt</td></tr>
+    <tr><td><code>npx vitest run</code></td><td><span class="pill ok">19 passed (19)</span></td><td>01-test.txt</td></tr>
+    <tr><td><code>npm test</code></td><td><span class="pill bad">Missing script: "test"</span> exit 1</td><td>02-npm-test.txt</td></tr>
+    <tr><td><code>npm run lint</code> / <code>typecheck</code></td><td><span class="pill ok">exit 0</span> / <span class="pill ok">exit 0</span></td><td>03-lint.txt, 04-typecheck.txt</td></tr>
+    <tr><td><code>npm run build</code></td><td><span class="pill ok">built</span> JS 155.50 kB</td><td>05-build.txt</td></tr>
+    <tr><td><code>npm audit</code> / <code>--omit=dev</code></td><td><span class="pill bad">2 crit, 14 high</span> / <span class="pill bad">1 high (ws)</span></td><td>06-audit.txt, 07-audit-prod.txt</td></tr>
+    <tr><td>Playwright UI states (5)</td><td>6e2–7e2 → <span class="pill bad">Available</span></td><td>12-ui-states.txt + screenshots</td></tr>
+  </table>
+  <h3 style="font-size:18px;margin:18px 0 8px">Weaknesses and missing checks, with evidence</h3>
+  <div class="grid3">
+    <div class="card rose"><h3>W1 No test entry point</h3><p class="small">The tests exist, but <code>npm test</code> fails, so an agent cannot find the gate (02-npm-test.txt).</p></div>
+    <div class="card rose"><h3>W2 Unused dependency with a vulnerability</h3><p class="small"><code>@supabase/supabase-js</code> is never imported (<code>git grep</code> exit 1) but brings in <code>ws</code> with a high advisory (08-npm-ls-ws.txt).</p></div>
+    <div class="card rose"><h3>W3 No README, AGENTS.md or CI</h3><p class="small">The repo root has only config files; no documented setup, rules or automated gate (<code>git ls-files</code>).</p></div>
+  </div>
+  <div class="foot"><span>Observed facts only; claims that need checking are marked on the next slide</span><span>4</span></div>
+</section>
+
+<!-- 5 AC + facts -->
+<section class="s">
+  <div class="kicker">Task #01 · Acceptance criteria and facts</div>
+  <h2>Five criteria that must stay true after every change</h2>
+  <table style="margin-top:8px">
+    <tr><th style="width:7%">ID</th><th style="width:55%">Criterion</th><th>Verified by</th></tr>
+    <tr><td><b>RC1</b></td><td>Booking rules AC1–AC4 give the same decisions on the 19 baseline cases (touching allowed, 120 min allowed, 121 rejected, blocked rejected, overlaps rejected)</td><td><code>npm test</code>: T01–T19 unchanged and passing</td></tr>
+    <tr><td><b>RC2</b></td><td><code>checkAvailability()</code> never changes the bookings it receives (AC5)</td><td>T17 (frozen input), T19 (out-of-order input)</td></tr>
+    <tr><td><b>RC3</b></td><td>Lint, type check and production build succeed</td><td><code>npm run lint / typecheck / build</code> exit 0</td></tr>
+    <tr><td><b>RC4</b></td><td>The UI still works: defaults → Available; Room blocked → Unavailable; empty field → Awaiting input</td><td><code>scripts/ui-states.py</code> + screenshot pixel comparison</td></tr>
+    <tr><td><b>RC5</b></td><td>No secrets, real personal data or network calls in the app</td><td><code>git grep</code> for keys, <code>fetch</code> and WebSocket</td></tr>
+  </table>
+  <div class="grid3" style="margin-top:18px">
+    <div class="card"><h3><span class="pill ok">Observed fact</span></h3><p class="small">19/19 tests pass; <code>npm test</code> is missing; the production dependency tree has 1 high-severity advisory; <code>parseInt('6e2')</code> = 6.</p></div>
+    <div class="card amber"><h3><span class="pill warn">Assumption</span></h3><p class="small">Bookings stay hard-coded sample data, and the app is shipped only as a static <code>dist/</code> build, never the dev server.</p></div>
+    <div class="card" style="background:#eef2ff"><h3><span class="pill unk">Unverified AI suggestion</span></h3><p class="small">Every AI claim was treated as unverified until a command reproduced it (slides 8–10).</p></div>
+  </div>
+  <div class="foot"><span>docs/ACCEPTANCE_CRITERIA.md</span><span>5</span></div>
+</section>
+
+<!-- 6 AGENTS.md -->
+<section class="s">
+  <div class="kicker">Task #02 · Agent instructions</div>
+  <h2>AGENTS.md at the repo root, loaded by Claude Code via CLAUDE.md</h2>
+  <div class="grid2" style="grid-template-columns:1.05fr 1fr;margin-top:8px">
+    <div>
+      <div class="grid2" style="gap:12px">
+        <div class="card"><h3>§1 Purpose · §2 Architecture</h3><p class="small">Layer table: pure domain, parsing, status view, UI and tests, with one rule for each layer.</p></div>
+        <div class="card"><h3>§3 Setup</h3><p class="small">Node 24.x; install with <code>npm ci</code> only.</p></div>
+        <div class="card"><h3>§4 Safe commands</h3><p class="small"><code>npm test</code>, lint, typecheck, build, <code>npm run check</code>, dev server, read-only git and npm commands, each with its expected result.</p></div>
+        <div class="card"><h3>§5 Conventions · §7 Tests</h3><p class="small">Strict TS, <code>@/</code> imports, small commits; every fix needs a test that fails before and passes after; report the real totals.</p></div>
+      </div>
+      <div class="card white" style="margin-top:12px"><h3>Review gates (§7)</h3><p class="small">Gate 1 (agent): <code>npm run check</code> passes. Gate 2 (human): reads the whole diff. Gate 3 (human): merges. Agents never merge or deploy.</p></div>
+    </div>
+    <div>
+      <div class="card rose"><h3>§6 Forbidden actions</h3>
+        <ul class="small" style="font-size:13.5px">
+          <li><b>Secrets:</b> never create, read or commit <code>.env*</code>, keys or real personal data</li>
+          <li><b>Deployments:</b> no deploys, <code>npm publish</code> or <code>git push</code> unless the human asks</li>
+          <li><b>Destructive commands:</b> <code>rm -rf</code>, <code>reset --hard</code>, force-push, history rewrite</li>
+          <li><b>Unreviewed dependency changes:</b> no install, update or <code>audit fix</code> without written approval of the exact change</li>
+          <li>Never weaken or skip tests; never change rules AC1–AC5 without being asked</li>
+        </ul></div>
+      <div class="card amber" style="margin-top:12px"><h3>Disclosure</h3><p class="small">Claude Code loads <code>CLAUDE.md</code> automatically, and that file imports <code>@AGENTS.md</code>. The risk-review sub-agent might not load it, so its relevant rules were <b>pasted into the prompt explicitly</b> (see the AI appendix).</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>AGENTS.md, CLAUDE.md (commits 554fa93, fecaccd)</span><span>6</span></div>
+</section>
+
+<!-- 7 PATTERN -->
+<section class="s">
+  <div class="kicker">Task #03 · Focused pattern decision</div>
+  <h2>Duplicated conditionals → one table-driven status view</h2>
+  <p class="sub">Problem: App.tsx worked out the same 3-way state (available / unavailable / awaiting) 5 times with nested ternaries.</p>
+  <div class="grid2" style="gap:20px">
+<pre><span style="color:#fca5a5">// BEFORE (App.tsx, repeated 5×: card, badge, icon, title colour, title text)</span>
+className={`... ${
+  result?.available
+    ? 'bg-emerald-50 ring-emerald-200'
+    : result?.available === false
+      ? 'bg-rose-50 ring-rose-200'
+      : 'bg-white ring-slate-200'
+}`}</pre>
+<pre><span style="color:#86efac">// AFTER — src/components/resultStatus.ts</span>
+export const RESULT_STATUS_VIEW:
+  Record&lt;ResultStatus, ResultStatusView&gt; = {
+  available:   { title:'Available', icon:CheckCircle2, ... },
+  unavailable: { title:'Unavailable', icon:XCircle, ... },
+  pending:     { title:'Awaiting input', ... } };
+<span style="color:#86efac">// App.tsx: computed once</span>
+const view = RESULT_STATUS_VIEW[getResultStatus(result)];</pre>
+  </div>
+  <div class="grid2" style="grid-template-columns:1.15fr 1fr;margin-top:14px">
+    <table>
+      <tr><th>Option</th><th>Verdict</th></tr>
+      <tr><td>Classic Strategy (interface + 3 classes)</td><td>Rejected: ceremony, no behaviour to vary</td></tr>
+      <tr><td><b>Table-driven Strategy (<code>Record</code>)</b></td><td><b>Chosen</b>: compile-time exhaustive, one place per state</td></tr>
+      <tr><td>Adapter for the time inputs</td><td>Not needed: one input source, a plain function is enough (M1)</td></tr>
+      <tr><td>Strategy for rules AC1–AC4</td><td>Rejected: 4 fixed rules, already pure and tested</td></tr>
+    </table>
+    <div class="card"><h3>Before → after, and proof</h3>
+      <p class="small">Status ternaries <b>5 → 0</b> · <code>result?.available</code> uses <b>12 → 2</b> · App.tsx <b>245 → 206</b> lines<br>RC1–RC3: <code>npm run check</code> → <b>23/23</b> (19 baseline + 4 new) · build OK<br>RC4: same text in all 5 UI states; screenshots 1–2 pixel-identical, 3–4 differ by ≤ 1/255 (rendering noise)</p></div>
+  </div>
+  <div class="foot"><span>docs/PATTERN_DECISION.md · evidence/refactor/ · commit eff0b31</span><span>7</span></div>
+</section>
+
+<!-- 8 TASK 4 METHOD -->
+<section class="s">
+  <div class="kicker">Task #04 · Read-only risk review</div>
+  <h2>The AI proposed risks without file access; I verified each one</h2>
+  <div class="grid2" style="grid-template-columns:1fr 1fr;margin-top:10px">
+    <div>
+      <div class="card white" style="margin-bottom:12px"><h3>Read-only setup</h3><p class="small">Claude Code sub-agent of type <code>Explore</code>, which has <b>no Edit or Write tools</b>, so the tool itself prevents file changes. The prompt also forbade any command that changes the working tree. Code reviewed: commit 554fa93.</p></div>
+<pre>Prompt (summary): "READ-ONLY risk review ... propose ≥ 8
+candidates across correctness, maintainability, security,
+dependency, agent operations. For each: ID, category,
+cause→event→consequence, file + lines, evidence you
+actually observed — say 'unverified' otherwise,
+confidence, minimal mitigation."</pre>
+      <p class="small" style="margin-top:8px">Raw prompt and output: <code>docs/evidence/ai/01-risk-review.md</code> (AI-01 … AI-11)</p>
+    </div>
+    <div>
+      <div class="card"><h3>How I checked each claim</h3>
+        <ul class="small">
+          <li><code>scripts/probe-risks.ts</code>: calls the real functions with the AI's inputs</li>
+          <li><code>git check-ignore</code>, <code>git grep</code>, <code>npm ls</code>, <code>npm audit</code>, a bundle grep</li>
+          <li>Playwright UI run and screenshots</li>
+          <li>Reading the advisory text and the Vite source for the esbuild claim</li>
+        </ul></div>
+      <div class="grid3" style="margin-top:14px;gap:12px">
+        <div class="card"><div class="big" style="font-size:44px">11</div><div class="lab">confirmed</div></div>
+        <div class="card amber"><div class="big" style="font-size:44px;color:var(--amber)">1</div><div class="lab">plausible / unverified</div></div>
+        <div class="card rose"><div class="big rose" style="font-size:44px">1</div><div class="lab">unsupported</div></div>
+      </div>
+      <p class="small" style="margin-top:10px">13 findings in all 5 categories: correctness 3 · maintainability 3 · security 2 · dependency 2 · agent operations 3.</p>
+    </div>
+  </div>
+  <div class="foot"><span>docs/evidence/verification/01–07</span><span>8</span></div>
+</section>
+
+<!-- 9 RISK REGISTER -->
+<section class="s" style="padding-top:36px">
+  <div class="kicker">Task #05 · Risk register</div>
+  <h2 style="font-size:28px">13 evaluated findings, score = likelihood × impact</h2>
+  <table style="font-size:11.6px;margin-top:6px">
+    <tr><th>ID</th><th>Category</th><th>Cause → event → consequence (component)</th><th>Class</th><th>L</th><th>I</th><th>Score</th><th>After</th><th>Mitigation / plan</th></tr>
+    <tr style="background:#fff1f2"><td><b>R-01</b></td><td>Correctness</td><td><code>parseInt</code> reads "6e2" as 6 → 600–700 shown <b>Available</b> despite the overlap (App.tsx, TimeField)</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>3</td><td><b>6</b></td><td>3</td><td>M1 strict parser</td></tr>
+    <tr><td><b>R-02</b></td><td>Correctness</td><td>No integer guard → 660.5 / ∞ accepted, label "11:0.5" (booking.ts)</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>2</td><td>4</td><td>1</td><td>M1 integer guard</td></tr>
+    <tr style="background:#fff1f2"><td><b>R-03</b></td><td>Dependency</td><td>Unused supabase-js → ws high advisory in production dependencies (package.json)</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>2</td><td><b>4</b></td><td>1</td><td>M2 remove package</td></tr>
+    <tr><td>R-04</td><td>Security</td><td><code>.env.production</code> not ignored → secret committed (.gitignore)</td><td><span class="pill ok">Conf.</span></td><td>1</td><td>3</td><td>3</td><td>2</td><td>added <code>.env.*</code></td></tr>
+    <tr><td>R-05</td><td>Security</td><td>"esbuild advisory lets any site read the dev server": Vite never calls esbuild <code>serve()</code></td><td><span class="pill bad">Unsup.</span></td><td>–</td><td>–</td><td>–</td><td>–</td><td>not scored</td></tr>
+    <tr><td>R-06</td><td>Agent ops</td><td>Rules are advisory only, no deny rules or hooks → an agent can push or run audit fix (.claude/)</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>2</td><td>4</td><td>4</td><td>open: deny rules</td></tr>
+    <tr><td>R-07</td><td>Dependency</td><td>vitest → tinypool (2 critical), plus vite/rollup advisories → risk to the dev machine (dev dependencies)</td><td><span class="pill ok">Conf.</span></td><td>1</td><td>3</td><td>3</td><td>3</td><td>background task</td></tr>
+    <tr><td>R-08</td><td>Correctness</td><td><code>now</code> and stored bookings are not range-checked → wrong decision if data becomes real</td><td><span class="pill unk">Plaus.</span></td><td>1</td><td>2</td><td>2</td><td>2</td><td>accept; before backend</td></tr>
+    <tr><td>R-09</td><td>Agent ops</td><td>A task doc said "Pre-approved by the human" → an agent may treat it as permission</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>2</td><td>4</td><td>2</td><td>doc reworded; AGENTS.md is the only authority</td></tr>
+    <tr><td>R-10</td><td>Maintain.</td><td>Tests skipped the parse paths; comments say "AC1-AC6" but only 5 exist</td><td><span class="pill ok">Conf.</span></td><td>3</td><td>1</td><td>3</td><td>2</td><td>+11 tests</td></tr>
+    <tr><td>R-11</td><td>Maintain.</td><td>1440 defined in 3+ places; Timeline repeats part of AC1</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>1</td><td>2</td><td>2</td><td>accept; shared constant</td></tr>
+    <tr><td>R-12</td><td>Agent ops</td><td>UI check not in the repo → an agent cannot re-run RC4</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>1</td><td>2</td><td>1</td><td>scripts/ui-states.py</td></tr>
+    <tr><td>R-13</td><td>Maintain.</td><td>5 duplicated status ternaries (App.tsx)</td><td><span class="pill ok">Conf.</span></td><td>2</td><td>1</td><td>2</td><td>1</td><td>Task 3 refactor</td></tr>
+  </table>
+  <p class="small" style="margin-top:6px">Owner for all items: Argin Bekezhan. Full columns (evidence, verification plan, residual risk) are in <code>docs/RISK_REGISTER.md</code>. <b>Top two for corrective action: R-01 (6) and R-03 (4)</b>; R-03 wins the tie at 4 because it is the only one that fails a release check.</p>
+  <div class="foot"><span>docs/RISK_REGISTER.md</span><span>9</span></div>
+</section>
+
+<!-- 10 TOP RISK EVIDENCE -->
+<section class="s">
+  <div class="kicker">Task #05 · Top confirmed risk R-01</div>
+  <h2>Reproduced: "6e2–7e2" (= 10:00–11:40) was shown as Available</h2>
+  <div class="grid2" style="gap:24px;margin-top:8px">
+    <div><img class="shot" src="../evidence/screenshots/baseline-4-exponent-input.png"><p class="small" style="margin-top:6px"><span class="pill bad">Baseline</span> The app checked 00:06–00:07 and said <b>Available</b>, but the slot the user meant overlaps Intro CS 10:00–11:00.</p></div>
+    <div><img class="shot" src="../evidence/screenshots/final-4-exponent-input.png"><p class="small" style="margin-top:6px"><span class="pill ok">Final</span> Fields turn red and the card says "Enter a start time as whole minutes…". No false Available.</p></div>
+  </div>
+<pre style="margin-top:12px">$ npx vite-node scripts/probe-risks.ts   (baseline)
+AI-01 parseInt('6e2') / Number('6e2')               -> [6,600]
+AI-01 check(6,7,now=0) as UI computes for 6e2/7e2   -> {"available":true, ...}
+AI-01 check(600,700,now=0) what the user meant      -> {"available":false,"reason":"Overlaps existing booking \"Intro CS\" (10:00–11:00)."}</pre>
+  <div class="foot"><span>evidence/verification/01-probe-baseline.txt · screenshots/baseline-4, final-4</span><span>10</span></div>
+</section>
+
+<!-- 11 M1 -->
+<section class="s">
+  <div class="kicker">Task #07 · Mitigation M1 (R-01, R-02) · commit d3504b3</div>
+  <h2>Strict whole-minute input; tests written first</h2>
+  <div class="grid2" style="gap:22px;margin-top:6px">
+    <div>
+<pre><span style="color:#86efac">// src/lib/time.ts  (new)</span>
+export function parseMinutes(raw: string): number {
+  const text = raw.trim();
+  return /^-?\d+$/.test(text) ? Number(text) : NaN;
+}
+<span style="color:#86efac">// src/lib/booking.ts  (+3 lines)</span>
+if (![start, end, currentTime].every(Number.isInteger)) {
+  return { available: false,
+    reason: 'Times must be whole minutes (e.g. 600 = 10:00).' };
+}</pre>
+      <div class="card amber" style="margin-top:12px"><h3>AI-proposed diff reviewed and changed</h3><p class="small">The AI suggested <code>Number(raw)</code>. I rejected it: <code>Number('6e2')</code> = 600 and <code>Number('')</code> = 0, so it would accept exponent text and turn an empty field into midnight. I used a regex instead.</p></div>
+    </div>
+    <div>
+      <table>
+        <tr><th>Step</th><th>Command</th><th>Result</th></tr>
+        <tr><td>New tests vs old code</td><td><code>npm test</code></td><td><span class="pill bad">5 failed | 29 passed (34)</span></td></tr>
+        <tr><td>After the fix</td><td><code>npm run check</code></td><td><span class="pill ok">34 passed (34)</span> lint, types, build OK</td></tr>
+        <tr><td>Probe</td><td><code>check(660.5,…)</code></td><td>available → <b>false</b></td></tr>
+        <tr><td>UI</td><td>6e2 / 7e2</td><td>Available → <b>Awaiting input</b></td></tr>
+      </table>
+      <p class="small" style="margin-top:10px">New tests: P01–P09 (parser: 600, 0, 1440, −5 accepted; 6e2, 660.9, empty, 12abc, Infinity rejected) and T20–T21 (fraction, infinite <code>now</code>).</p>
+      <div class="card" style="margin-top:12px"><h3>Updated scores</h3><p class="small">R-01 <b>6 → 3</b> (impact stays 3 if a future entry point skips the parser) · R-02 <b>4 → 1</b>.<br>Trade-off: the message is generic ("as whole minutes") rather than naming the bad character.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>evidence/mitigation-M1/01–05</span><span>11</span></div>
+</section>
+
+<!-- 12 M2 -->
+<section class="s">
+  <div class="kicker">Task #07 · Mitigation M2 (R-03) · commit e03fee4</div>
+  <h2>Removed an unused production dependency after reviewing the lockfile diff</h2>
+  <div class="grid2" style="gap:22px;margin-top:8px">
+    <div>
+<pre>$ git grep -n -i supabase -- src index.html vite.config.ts
+[exit code: 1]          <span style="color:#fca5a5">← never imported</span>
+$ npm ls ws
+`-- @supabase/supabase-js@2.57.4
+  `-- @supabase/realtime-js@2.15.5
+    `-- ws@8.18.3       <span style="color:#fca5a5">← GHSA-58qx-3vcg-4xpx (high)</span>
+
+$ npm uninstall @supabase/supabase-js   (approved by owner)
+ package.json      |   1 -
+ package-lock.json | 133 -----</pre>
+      <div class="card white" style="margin-top:12px"><h3>Diff review</h3><p class="small">Lockfile 364 → 349 entries: <b>15 removed, 0 added</b>, all in the supabase tree (<code>@supabase/*</code>, <code>ws</code>, <code>@types/ws</code>, <code>whatwg-url</code>, …). The bundle had 0 supabase references before and after.</p></div>
+    </div>
+    <div>
+      <div class="grid2" style="gap:12px">
+        <div class="card rose"><div class="big rose">1</div><div class="lab">high advisory in production dependencies (baseline)</div></div>
+        <div class="card"><div class="big">0</div><div class="lab"><code>npm audit --omit=dev</code> after M2</div></div>
+      </div>
+      <table style="margin-top:14px">
+        <tr><th>Check after M2</th><th>Result</th></tr>
+        <tr><td><code>npm run check</code></td><td><span class="pill ok">34/34</span>, lint, types and build OK</td></tr>
+        <tr><td><code>npm audit</code> (all)</td><td>25 → 24 (dev-only remain → R-07)</td></tr>
+      </table>
+      <div class="card amber" style="margin-top:12px"><h3>Issue during verification, recorded</h3><p class="small">The first <code>npm ci</code> failed with EPERM because the running Vite dev server held files in node_modules. I stopped the server and re-ran it successfully.</p></div>
+      <p class="small" style="margin-top:8px">Score R-03 <b>4 → 1</b>. Trade-off: a future backend must add a reviewed client library deliberately.</p>
+    </div>
+  </div>
+  <div class="foot"><span>evidence/mitigation-M2/01–06</span><span>12</span></div>
+</section>
+
+<!-- 13 BEFORE/AFTER -->
+<section class="s">
+  <div class="kicker">Task #07 · Verification</div>
+  <h2>Before and after: same commands on baseline and final</h2>
+  <table style="margin-top:8px">
+    <tr><th>Check</th><th>Baseline d5af111</th><th>Final b38123e</th></tr>
+    <tr><td><code>npm test</code></td><td><span class="pill bad">Missing script</span> (vitest directly: 19/19)</td><td><span class="pill ok">34 passed (34)</span>, 3 files</td></tr>
+    <tr><td><code>npm run lint</code> · <code>typecheck</code> · <code>build</code></td><td>exit 0 · exit 0 · exit 0</td><td>exit 0 · exit 0 · exit 0</td></tr>
+    <tr><td><code>npm audit --omit=dev</code></td><td>1 high (ws)</td><td><b>0 vulnerabilities</b></td></tr>
+    <tr><td><code>npm audit</code> (all)</td><td>25: 2 low, 7 moderate, 14 high, 2 critical</td><td>24: 2 low, 7 moderate, 13 high, 2 critical (dev only)</td></tr>
+    <tr><td>UI: 6e2–7e2 / 660.9</td><td>Available / Available</td><td>Awaiting input / Awaiting input</td></tr>
+    <tr><td>RC4 screenshots (default, blocked, empty)</td><td>reference</td><td>identical · identical · 40 px differ by ≤ 2/255</td></tr>
+  </table>
+  <div class="grid3" style="margin-top:16px;gap:14px">
+    <div><img class="shot" src="../evidence/screenshots/final-1-default.png"><p class="lab">final · defaults → Available</p></div>
+    <div><img class="shot" src="../evidence/screenshots/final-2-blocked.png"><p class="lab">final · Room blocked → Unavailable</p></div>
+    <div class="card amber"><h3>Not executed</h3><ul class="small"><li>Browsers other than Chrome; mobile viewport</li><li>CI pipeline (none exists)</li><li>Dev-toolchain major upgrade (R-07): planned as the background task</li></ul></div>
+  </div>
+  <div class="foot"><span>evidence/baseline/* vs evidence/final/*</span><span>13</span></div>
+</section>
+
+<!-- 14 READINESS -->
+<section class="s">
+  <div class="kicker">Task #06 · Agent-readiness audit</div>
+  <h2>Readiness level 2: Documented (baseline was 1)</h2>
+  <div class="grid2" style="grid-template-columns:1.3fr 1fr;margin-top:8px">
+    <table style="font-size:12.5px">
+      <tr><th>Area</th><th>Baseline</th><th>Final</th></tr>
+      <tr><td>Readable structure</td><td><span class="pill ok">yes</span></td><td><span class="pill ok">yes</span> + parsing and view split out</td></tr>
+      <tr><td>README accuracy</td><td><span class="pill bad">none</span></td><td><span class="pill ok">every command was run</span></td></tr>
+      <tr><td>Reproducible setup</td><td><span class="pill warn">lockfile only</span></td><td><span class="pill ok"><code>npm ci</code> + Node 24 documented</span></td></tr>
+      <tr><td>Pinned dependencies</td><td><span class="pill warn">^ ranges + lock</span></td><td><span class="pill warn">same</span></td></tr>
+      <tr><td>Tests / lint / types / build</td><td><span class="pill warn">no <code>npm test</code></span></td><td><span class="pill ok"><code>npm run check</code> gate</span></td></tr>
+      <tr><td>UI verification</td><td><span class="pill bad">manual</span></td><td><span class="pill warn">scripted, not in CI</span></td></tr>
+      <tr><td>Logging</td><td><span class="pill warn">none</span></td><td><span class="pill warn">none (client-only demo)</span></td></tr>
+      <tr><td>Security safeguards</td><td><span class="pill bad">prod vuln, .env only</span></td><td><span class="pill ok">prod audit 0, <code>.env.*</code></span></td></tr>
+      <tr><td>AGENTS.md: permissions, safe commands, prohibited actions, review gates</td><td><span class="pill bad">missing</span></td><td><span class="pill ok">§4, §6, §7</span></td></tr>
+      <tr><td>Rule enforcement / CI</td><td><span class="pill bad">none</span></td><td><span class="pill bad">none</span></td></tr>
+    </table>
+    <div>
+      <div class="card"><h3>Why level 2</h3><p class="small">Purpose, architecture, setup, safe commands, prohibited actions, review gates and a single gate command all exist, and each was run with the result recorded.</p></div>
+      <div class="card rose" style="margin-top:12px"><h3>Missing evidence for level 3</h3>
+        <ul class="small"><li>No CI running <code>npm run check</code> on every branch</li><li>Rules are not enforced: no permission deny rules or hooks (R-06)</li><li>UI check not in the test runner; Python Playwright not pinned</li><li>24 dev advisories, 2 critical (R-07)</li><li>No logging or error reporting</li></ul></div>
+    </div>
+  </div>
+  <div class="foot"><span>docs/READINESS_AUDIT.md</span><span>14</span></div>
+</section>
+
+<!-- 15 BACKGROUND AGENT -->
+<section class="s">
+  <div class="kicker">Task #08 · Background agent safeguards (hypothetical, not run)</div>
+  <h2>Task: upgrade vitest to clear the critical tinypool advisory (R-07)</h2>
+  <div class="grid3" style="margin-top:10px">
+    <div class="card"><h3>Isolation</h3><ul class="small"><li>Branch <code>agent/vitest-upgrade</code></li><li>Worktree <code>../scb-agent-vitest</code></li><li>Network: npm registry only</li><li>No credentials, deploy keys or merge rights</li><li><b>30 min</b>, at most 3 attempts at a passing gate, then stop</li></ul></div>
+    <div class="card"><h3>Allowed</h3><p class="small"><b>Files:</b> the <code>devDependencies.vitest</code> line, the npm-generated lockfile, migration edits in <code>*.test.ts</code> or <code>vitest.config.*</code><br><b>Commands:</b> <code>npm ci</code>, <code>npm install -D vitest@x</code> (this package only), <code>npm test</code>, lint, typecheck, build, <code>check</code>, <code>audit</code>, git commits on the agent branch</p></div>
+    <div class="card rose"><h3>Prohibited</h3><p class="small">push to main, force-push, merge, rebase or delete branches · <code>npm audit fix --force</code> · any other package · CI, deploy or Bolt config · <code>.skip</code> / <code>.only</code> or weaker assertions · secrets · deploy or <code>npm publish</code></p></div>
+  </div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card white"><h3>Required artifacts</h3><div class="row"><span class="num">1</span><p class="small">Change summary (versions before → after)</p></div><div class="row"><span class="num">2</span><p class="small">Diff (<code>git diff --stat</code> must touch only allowed files)</p></div><div class="row"><span class="num">3</span><p class="small">Test log with totals (same test count as main)</p></div><div class="row"><span class="num">4</span><p class="small">Build result + lint and typecheck exit codes</p></div><div class="row"><span class="num">5</span><p class="small">Risk notes: audit before/after, anything not run</p></div></div>
+    <div class="card amber"><h3>Human review · failure · rollback</h3><p class="small"><b>Draft PR only.</b> A human reads the whole diff, re-runs <code>npm ci && npm run check</code>, compares the test count and checks audit totals, then merges. Deploys are done by the human only.<br><b>Failure or timeout:</b> stop and report; nothing reaches main; the human removes the worktree.<br><b>Problem after merge:</b> <code>git revert</code> (no history rewrite), <code>npm ci</code>, re-check, redeploy the previous build.<br>The document is labelled <b>"Not an authorization"</b> (fixes R-09).</p></div>
+  </div>
+  <div class="foot"><span>docs/BACKGROUND_AGENT_TASK.md</span><span>15</span></div>
+</section>
+
+<!-- 16 RELEASE DECISION -->
+<section class="s dark">
+  <div class="kicker">Task #09 · Release decision</div>
+  <h1 style="font-size:64px;color:#fcd34d;margin-top:6px">CONDITIONAL</h1>
+  <p style="font-size:17px;color:#a7d8d0;margin-top:6px">Reviewed version: main @ b38123e (tag <code style="background:#1d4247">final</code>)</p>
+  <div class="grid3" style="margin-top:22px">
+    <div class="card" style="background:#173b40;color:#e6f4f1"><h3>Test evidence</h3><p class="small">lint ✔ · typecheck ✔ · <b>34/34</b> tests ✔ · build ✔ · production audit <b>0</b> ✔ · RC1–RC5 hold</p></div>
+    <div class="card" style="background:#173b40;color:#e6f4f1"><h3>Risk register</h3><p class="small">Top risks R-01 6→3 and R-03 4→1; R-02 4→1. No open confirmed risk scores above 4.</p></div>
+    <div class="card" style="background:#173b40;color:#e6f4f1"><h3>Readiness</h3><p class="small">Level 2, Documented. Rules are written down but not enforced; no CI.</p></div>
+  </div>
+  <table style="margin-top:20px;font-size:13px;color:#e6f4f1">
+    <tr><th style="background:#0d9488">Condition</th><th style="background:#0d9488">Control</th><th style="background:#0d9488">Owner</th></tr>
+    <tr><td style="border-color:#24525a">C1 Ship only the static <code style="background:#1d4247">dist/</code>; dev server stays on localhost</td><td style="border-color:#24525a"><code style="background:#1d4247">npm ci && npm run check</code> before a human deploys</td><td style="border-color:#24525a">A. Bekezhan</td></tr>
+    <tr><td style="border-color:#24525a">C2 Dev advisories (R-07)</td><td style="border-color:#24525a">Isolated upgrade task; no untrusted test input meanwhile</td><td style="border-color:#24525a">A. Bekezhan</td></tr>
+    <tr><td style="border-color:#24525a">C3 Rules not enforced (R-06)</td><td style="border-color:#24525a">Human review of every agent diff; add deny rules next</td><td style="border-color:#24525a">A. Bekezhan</td></tr>
+    <tr><td style="border-color:#24525a">C4 Data validation (R-08)</td><td style="border-color:#24525a">Required before bookings come from real data</td><td style="border-color:#24525a">A. Bekezhan</td></tr>
+  </table>
+  <p class="small" style="margin-top:12px;color:#a7d8d0">Not GO: known limitations remain, and they need the controls above. Not NO-GO: none of them affects the shipped bundle or a booking decision, and the critical checks pass.</p>
+  <div class="foot"><span>docs/RELEASE_DECISION.md</span><span>16</span></div>
+</section>
+
+<!-- 17 REFLECTION -->
+<section class="s">
+  <div class="kicker">Task #10 · AI reflection (289 words)</div>
+  <h2>What the AI got right, what it got wrong, and what I checked</h2>
+  <div style="columns:2;column-gap:34px;margin-top:10px;font-size:14.2px;line-height:1.48">
+    <p>I used Claude Code in the Claude desktop app with Claude Opus 5.5 (<code>claude-opus-5-5</code>) on 22 November 2026. For the risk review it launched a read-only sub-agent of the same model with no file-editing tools. The sub-agent received the assignment PDF, the repository at commit 554fa93, the baseline outputs and the AGENTS.md rules. The rules were pasted into its prompt because a sub-agent may not load AGENTS.md by itself.</p>
+    <p style="margin-top:8px"><b>The most useful suggestion</b> was AI-01: <code>parseInt("6e2")</code> returns 6. I reproduced it in the browser. Entering 6e2–7e2, which means 600–700, showed Available although that time overlaps Intro CS. The 19 old tests could not catch this because they never go through the UI's parsing.</p>
+    <p style="margin-top:8px"><b>One weak suggestion</b> was AI-07, the claim that the esbuild advisory lets any website read my dev server. The advisory affects esbuild's <code>serve</code> mode, and Vite only calls <code>esbuild.context()</code>, so I marked the claim unsupported. I also rejected the AI's fix for AI-01, <code>Number(raw)</code>, because <code>Number("6e2")</code> is 600 and <code>Number("")</code> is 0.</p>
+    <p style="margin-top:8px"><b>I checked every finding myself</b> with the probe script, <code>git check-ignore</code>, <code>npm ls</code>, <code>npm audit</code>, by reading the files and with screenshots. The tests changed my decisions. I wrote the new tests first and saw 5 of them fail on the old code, which proved that M1 fixed the real cause. A pixel comparison of screenshots then showed the refactor left the UI unchanged.</p>
+    <p style="margin-top:8px"><b>The repository instructions helped.</b> The safe-command table and the dependency rule kept the changes small, and the review gate made me inspect the lockfile diff. The AI also found a flaw in my own instructions: the background-task document sounded like an approval. Next time, I would enforce these rules with permission settings and CI instead of only writing them down.</p>
+  </div>
+  <div class="foot"><span>docs/AI_REFLECTION.md</span><span>17</span></div>
+</section>
+
+<!-- 18 AI APPENDIX -->
+<section class="s" style="padding-top:36px">
+  <div class="kicker">Appendix · AI assistant indication and AI-use record</div>
+  <h2 style="font-size:28px">AI assistant used: Claude (Claude Code desktop, Claude Opus 5.5), 22 Nov 2026</h2>
+  <table style="font-size:11.4px;margin-top:8px">
+    <tr><th>#</th><th style="width:16%">Prompt summary</th><th style="width:16%">Output used</th><th style="width:24%">Problems found in the AI output</th><th style="width:22%">Human decision / change</th><th>Verification source</th></tr>
+    <tr><td>1</td><td>Read the PDF; propose a repo and workflow</td><td>Reuse Smart Campus (Practice 8)</td><td>—</td><td>I chose the repo and confirmed the practice dates</td><td>Assignment PDF</td></tr>
+    <tr><td>2</td><td>Run all checks and save the real output</td><td>evidence/baseline/*</td><td><code>npm test</code> did not exist</td><td>Recorded as weakness W1</td><td>exit codes in files</td></tr>
+    <tr><td>3</td><td>Draft AGENTS.md</td><td>AGENTS.md, CLAUDE.md</td><td>Draft listed modules that did not exist yet</td><td>Rows added only when the modules were created</td><td><code>git log -p AGENTS.md</code></td></tr>
+    <tr><td>4</td><td>Evaluate Strategy and Adapter for App.tsx</td><td>Table-driven status view</td><td>—</td><td>Rejected the heavier variants</td><td>23/23 tests; pixel compare</td></tr>
+    <tr><td>5</td><td>Read-only sub-agent: at least 8 risks with evidence</td><td>AI-01 … AI-11</td><td>AI-07 esbuild claim unsupported; AI-10 reversed the meaning of .bolt/prompt; AI-01 fix unsafe</td><td>Classified 13: 11 confirmed / 1 plausible / 1 unsupported</td><td>verification/01–07</td></tr>
+    <tr><td>6</td><td>M1: strict parsing, tests first</td><td>time.ts, guard, 11 tests</td><td><code>Number()</code> accepts "6e2" and ""</td><td>Regex parser; diff reviewed</td><td>5 failed → 34/34</td></tr>
+    <tr><td>7</td><td>M2: remove the unused dependency</td><td><code>npm uninstall</code></td><td>First package diff summary was wrong (it mixed + and − lines)</td><td>Recomputed: 15 removed, 0 added</td><td>mitigation-M2/06</td></tr>
+    <tr><td>8</td><td>Draft the register, audit, decision and reflection</td><td>docs/*.md, slides</td><td>Reflection first came out at 322 words</td><td>Cut to 289; checked every number against the evidence</td><td>this deck ↔ docs/evidence</td></tr>
+  </table>
+  <div class="grid2" style="margin-top:12px;gap:16px">
+    <div class="card white"><h3 style="font-size:15px">Deliverables in the repository</h3><p class="small">README.md · AGENTS.md · docs/ACCEPTANCE_CRITERIA.md · RISK_REGISTER.md · READINESS_AUDIT.md · MITIGATIONS.md · PATTERN_DECISION.md · BACKGROUND_AGENT_TASK.md · RELEASE_DECISION.md · AI_REFLECTION.md · AI_USE_RECORD.md · evidence/ (raw outputs, prompt and output, screenshots)</p></div>
+    <div class="card"><h3 style="font-size:15px">Integrity</h3><p class="small">No real credentials, confidential data or invented results: every number in this deck comes from a file in <code>docs/evidence/</code>, and tests that were not run are listed on slide 13.<br><b>Source:</b> github.com/BKJN1/smart-campus-booking-a5</p></div>
+  </div>
+  <div class="foot"><span>docs/AI_USE_RECORD.md · docs/evidence/ai/01-risk-review.md</span><span>18</span></div>
+</section>
+</body></html>
