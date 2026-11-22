@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Lock, Unlock, Clock, DoorOpen } from 'lucide-react';
 import { checkAvailability, minutesToLabel, type Booking } from '@/lib/booking';
+import { parseMinutes } from '@/lib/time';
 import { getResultStatus, RESULT_STATUS_VIEW } from '@/components/resultStatus';
 import { Timeline } from '@/components/Timeline';
 import { TimeField } from '@/components/TimeField';
@@ -8,6 +9,9 @@ import { TimeField } from '@/components/TimeField';
 const SAMPLE_BOOKINGS: Booking[] = [
   { id: 'b1', start: 600, end: 660, label: 'Intro CS' },
 ];
+
+/** Empty field → "Enter a start time"; typed but invalid (e.g. "6e2") → "... as whole minutes". */
+const wholeHint = (raw: string) => (raw.trim() === '' ? '' : ' as whole minutes');
 
 export default function App() {
   const [currentTime, setCurrentTime] = useState('555');
@@ -17,9 +21,9 @@ export default function App() {
 
   const [bookings] = useState<Booking[]>(SAMPLE_BOOKINGS);
 
-  const parsedCurrent = parseInt(currentTime, 10);
-  const parsedStart = parseInt(start, 10);
-  const parsedEnd = parseInt(end, 10);
+  const parsedCurrent = parseMinutes(currentTime);
+  const parsedStart = parseMinutes(start);
+  const parsedEnd = parseMinutes(end);
 
   const hasValidInput =
     !Number.isNaN(parsedStart) && !Number.isNaN(parsedEnd) && !Number.isNaN(parsedCurrent);
@@ -27,9 +31,9 @@ export default function App() {
   const missingMessage =
     !hasValidInput
       ? [
-          Number.isNaN(parsedCurrent) && 'Enter a current time',
-          Number.isNaN(parsedStart) && 'Enter a start time',
-          Number.isNaN(parsedEnd) && 'Enter an end time',
+          Number.isNaN(parsedCurrent) && `Enter a current time${wholeHint(currentTime)}`,
+          Number.isNaN(parsedStart) && `Enter a start time${wholeHint(start)}`,
+          Number.isNaN(parsedEnd) && `Enter an end time${wholeHint(end)}`,
         ]
           .filter(Boolean)
           .join(', ')

@@ -1,0 +1,13 @@
+$ npx vite-node scripts/probe-risks.ts  (after M1)
+AI-01 parseInt('6e2') / Number('6e2')                      -> [6,600]
+AI-01 parseInt('660.9')                                    -> 660
+AI-01 check(6,7,now=0) as UI computes for 6e2/7e2          -> {"available":true,"reason":"Room is available for the selected interval."}
+AI-01 check(600,700,now=0) what the user meant             -> {"available":false,"reason":"Overlaps existing booking \"Intro CS\" (10:00–11:00)."}
+AI-02 check(660.5, 720, 540)                               -> {"available":false,"reason":"Times must be whole minutes (e.g. 600 = 10:00)."}
+AI-02 minutesToLabel(660.5)                                -> "11:0.5"
+AI-03 check(660, 720, now=-100)                            -> {"available":true,"reason":"Room is available for the selected interval."}
+AI-03 check(660, 720, now=5000)                            -> {"available":false,"reason":"Start time must be after the current time (83:20)."}
+AI-03 malformed booking {start:700,end:650}, req 660-720   -> {"available":true,"reason":"Room is available for the selected interval."}
+extra check(-1, 30, now=-10) negative start                -> {"available":false,"reason":"Times must be within 0–1440 (00:00–24:00)."}
+M1 parseMinutes('6e2'), ('660.9'), ('600')                 -> [null,null,600]
+(note: JSON.stringify prints NaN as null)

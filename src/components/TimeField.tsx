@@ -1,4 +1,5 @@
 import { minutesToLabel } from '@/lib/booking';
+import { parseMinutes } from '@/lib/time';
 
 type TimeFieldProps = {
   label: string;
@@ -10,9 +11,9 @@ type TimeFieldProps = {
 };
 
 export function TimeField({ label, value, onChange, hint, min = 0, max = 1440 }: TimeFieldProps) {
-  const parsed = parseInt(value, 10);
+  const parsed = parseMinutes(value);
   const showHint = value !== '' && !Number.isNaN(parsed);
-  const outOfRange = showHint && (parsed < min || parsed > max);
+  const outOfRange = (showHint && (parsed < min || parsed > max)) || (value !== '' && !showHint);
 
   return (
     <div className="flex flex-col gap-1">

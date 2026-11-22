@@ -67,3 +67,16 @@ describe('AC5 regression for BUG-B (in-place sort)', () => {
     expect(bookings).toEqual(before);
   });
 });
+
+describe('M1 regression: AC1 requires whole minutes (R-01/R-02)', () => {
+  test('T20 (AC1) fractional start is rejected, not silently accepted', () => {
+    const r = checkAvailability(660.5, 720, 540, false, []);
+    expect(r.available).toBe(false);
+    expect(r.reason).toMatch(/whole minutes/);
+  });
+  test('T21 (AC1) non-finite current time is rejected', () => {
+    const r = checkAvailability(660, 720, Infinity, false, []);
+    expect(r.available).toBe(false);
+    expect(r.reason).toMatch(/whole minutes/);
+  });
+});

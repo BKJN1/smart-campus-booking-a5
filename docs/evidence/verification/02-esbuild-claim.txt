@@ -1,0 +1,22 @@
+$ grep -n "esbuild" -A4 docs/evidence/baseline/06-audit.txt
+81:esbuild  <=0.24.2
+82-Severity: moderate
+83:esbuild enables any website to send any requests to the development server and read the response - https://github.com/advisories/GHSA-67mh-4wv8-2f99
+84-fix available via `npm audit fix`
+85:node_modules/esbuild
+86-  vite  <=6.4.3
+87:  Depends on vulnerable versions of esbuild
+88-  node_modules/vite
+89-
+90-flatted  <=3.4.1
+91-Severity: high
+
+$ grep -rn "esbuild" node_modules/vite/package.json | head -3
+75:    "esbuild": "^0.21.3",
+$ npm ls esbuild
+vite-react-typescript-starter@0.0.0 C:\Users\RBk\Downloads\A5_Bekezhan_Argin\smart-campus-booking
+`-- vite@5.4.8
+  `-- esbuild@0.21.5
+
+$ grep -n "serve(" node_modules/vite/dist/node/chunks/*.js | grep -i "esbuild" | head
+(no output above = vite does not call esbuild's serve API)

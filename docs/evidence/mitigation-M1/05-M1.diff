@@ -1,0 +1,105 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index 38cbdaa..12b8a06 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,6 +1,7 @@
+ import { useMemo, useState } from 'react';
+ import { Lock, Unlock, Clock, DoorOpen } from 'lucide-react';
+ import { checkAvailability, minutesToLabel, type Booking } from '@/lib/booking';
++import { parseMinutes } from '@/lib/time';
+ import { getResultStatus, RESULT_STATUS_VIEW } from '@/components/resultStatus';
+ import { Timeline } from '@/components/Timeline';
+ import { TimeField } from '@/components/TimeField';
+@@ -9,6 +10,9 @@ const SAMPLE_BOOKINGS: Booking[] = [
+   { id: 'b1', start: 600, end: 660, label: 'Intro CS' },
+ ];
+ 
++/** Empty field → "Enter a start time"; typed but invalid (e.g. "6e2") → "... as whole minutes". */
++const wholeHint = (raw: string) => (raw.trim() === '' ? '' : ' as whole minutes');
++
+ export default function App() {
+   const [currentTime, setCurrentTime] = useState('555');
+   const [start, setStart] = useState('660');
+@@ -17,9 +21,9 @@ export default function App() {
+ 
+   const [bookings] = useState<Booking[]>(SAMPLE_BOOKINGS);
+ 
+-  const parsedCurrent = parseInt(currentTime, 10);
+-  const parsedStart = parseInt(start, 10);
+-  const parsedEnd = parseInt(end, 10);
++  const parsedCurrent = parseMinutes(currentTime);
++  const parsedStart = parseMinutes(start);
++  const parsedEnd = parseMinutes(end);
+ 
+   const hasValidInput =
+     !Number.isNaN(parsedStart) && !Number.isNaN(parsedEnd) && !Number.isNaN(parsedCurrent);
+@@ -27,9 +31,9 @@ export default function App() {
+   const missingMessage =
+     !hasValidInput
+       ? [
+-          Number.isNaN(parsedCurrent) && 'Enter a current time',
+-          Number.isNaN(parsedStart) && 'Enter a start time',
+-          Number.isNaN(parsedEnd) && 'Enter an end time',
++          Number.isNaN(parsedCurrent) && `Enter a current time${wholeHint(currentTime)}`,
++          Number.isNaN(parsedStart) && `Enter a start time${wholeHint(start)}`,
++          Number.isNaN(parsedEnd) && `Enter an end time${wholeHint(end)}`,
+         ]
+           .filter(Boolean)
+           .join(', ')
+diff --git a/src/components/TimeField.tsx b/src/components/TimeField.tsx
+index 6e9159e..ec001a7 100644
+--- a/src/components/TimeField.tsx
++++ b/src/components/TimeField.tsx
+@@ -1,4 +1,5 @@
+ import { minutesToLabel } from '@/lib/booking';
++import { parseMinutes } from '@/lib/time';
+ 
+ type TimeFieldProps = {
+   label: string;
+@@ -10,9 +11,9 @@ type TimeFieldProps = {
+ };
+ 
+ export function TimeField({ label, value, onChange, hint, min = 0, max = 1440 }: TimeFieldProps) {
+-  const parsed = parseInt(value, 10);
++  const parsed = parseMinutes(value);
+   const showHint = value !== '' && !Number.isNaN(parsed);
+-  const outOfRange = showHint && (parsed < min || parsed > max);
++  const outOfRange = (showHint && (parsed < min || parsed > max)) || (value !== '' && !showHint);
+ 
+   return (
+     <div className="flex flex-col gap-1">
+diff --git a/src/lib/booking.test.ts b/src/lib/booking.test.ts
+index d9485b9..a7363c5 100644
+--- a/src/lib/booking.test.ts
++++ b/src/lib/booking.test.ts
+@@ -67,3 +67,16 @@ describe('AC5 regression for BUG-B (in-place sort)', () => {
+     expect(bookings).toEqual(before);
+   });
+ });
++
++describe('M1 regression: AC1 requires whole minutes (R-01/R-02)', () => {
++  test('T20 (AC1) fractional start is rejected, not silently accepted', () => {
++    const r = checkAvailability(660.5, 720, 540, false, []);
++    expect(r.available).toBe(false);
++    expect(r.reason).toMatch(/whole minutes/);
++  });
++  test('T21 (AC1) non-finite current time is rejected', () => {
++    const r = checkAvailability(660, 720, Infinity, false, []);
++    expect(r.available).toBe(false);
++    expect(r.reason).toMatch(/whole minutes/);
++  });
++});
+diff --git a/src/lib/booking.ts b/src/lib/booking.ts
+index ac84eba..c0ecb4f 100644
+--- a/src/lib/booking.ts
++++ b/src/lib/booking.ts
+@@ -31,6 +31,9 @@ export function checkAvailability(
+   if (Number.isNaN(start) || Number.isNaN(end) || Number.isNaN(currentTime)) {
+     return { available: false, reason: 'Please enter valid start, end, and current times.' };
+   }
++  if (![start, end, currentTime].every(Number.isInteger)) {
++    return { available: false, reason: 'Times must be whole minutes (e.g. 600 = 10:00).' };
++  }
+   if (start < 0 || end > 1440) {
+     return { available: false, reason: 'Times must be within 0–1440 (00:00–24:00).' };
+   }

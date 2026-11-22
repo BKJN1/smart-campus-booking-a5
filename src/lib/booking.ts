@@ -31,6 +31,9 @@ export function checkAvailability(
   if (Number.isNaN(start) || Number.isNaN(end) || Number.isNaN(currentTime)) {
     return { available: false, reason: 'Please enter valid start, end, and current times.' };
   }
+  if (![start, end, currentTime].every(Number.isInteger)) {
+    return { available: false, reason: 'Times must be whole minutes (e.g. 600 = 10:00).' };
+  }
   if (start < 0 || end > 1440) {
     return { available: false, reason: 'Times must be within 0–1440 (00:00–24:00).' };
   }

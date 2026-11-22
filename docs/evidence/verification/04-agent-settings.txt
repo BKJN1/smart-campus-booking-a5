@@ -1,0 +1,7 @@
+$ ls .claude/
+total 8
+drwxr-xr-x 1 RBk 197121 0 Nov 22 21:36 .
+drwxr-xr-x 1 RBk 197121 0 Nov 22 21:42 ..
+drwxr-xr-x 1 RBk 197121 0 Oct 29 23:43 skills
+$ ls .claude/settings*
+ls: cannot access '.claude/settings*': No such file or directory

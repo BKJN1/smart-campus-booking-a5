@@ -1,0 +1,5 @@
+$ git check-ignore -v .env .env.local .env.production; echo exit
+.env -> .gitignore:23:.env	.env
+.env.local -> .gitignore:12:*.local	.env.local
+.env.production -> NOT IGNORED
+.env.development -> NOT IGNORED
