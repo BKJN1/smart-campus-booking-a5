@@ -1,0 +1,15 @@
+$ npm ci   (dev server stopped first: the first attempt failed with EPERM because the running Vite server locked node_modules)
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[exit code: 0]
+$ npm audit --omit=dev
+found 0 vulnerabilities
+[exit code: 0]
+$ npm audit (all, incl. dev) — summary
+24 vulnerabilities (2 low, 7 moderate, 13 high, 2 critical)
+$ npm ls ws
+vite-react-typescript-starter@0.0.0 C:\Users\RBk\Downloads\A5_Bekezhan_Argin\smart-campus-booking
+`-- (empty)
+

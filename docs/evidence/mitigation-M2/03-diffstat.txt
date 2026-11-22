@@ -1,0 +1,4 @@
+$ git diff --stat
+ package-lock.json | 133 ------------------------------------------------------
+ package.json      |   1 -
+ 2 files changed, 134 deletions(-)
