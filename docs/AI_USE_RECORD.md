@@ -5,7 +5,7 @@ No other assistant (ChatGPT, Gemini, Copilot, Grok, Perplexity) was used. Date o
 
 | # | Step | Prompt summary | Output used | Problems found in the AI output | Human decision / change | Verification source |
 |---|---|---|---|---|---|---|
-| 1 | Plan | Read the assignment PDF, propose a repository and workflow | Reuse my Smart Campus project (Practice 8 state); task order | — | Chose the repository myself; confirmed the practice dates (12 and 19 Nov) | Assignment PDF slides 5–28 |
+| 1 | Plan | Read the assignment PDF, propose a repository and workflow | Reuse my Smart Campus project (Practice 8 state); task order | — | Chose the repository myself | Assignment PDF slides 5–28 |
 | 2 | Baseline | Run install/test/lint/typecheck/build/audit and save the real output | `docs/evidence/baseline/*` | `npm test` did not exist (missing script) | Recorded it as a weakness instead of hiding it | Exit codes stored in each file |
 | 3 | AGENTS.md | Draft AGENTS.md with purpose, architecture, setup, safe/forbidden commands and review gates | `AGENTS.md`, `CLAUDE.md` (`@AGENTS.md` import) | The first draft listed modules that did not exist yet | Removed those rows and added them only in the commits that created the modules | `git log -p AGENTS.md` |
 | 4 | Pattern | Evaluate Strategy and Adapter for App.tsx | Table-driven status view | — | Rejected classic Strategy and Adapter as too heavy (see PATTERN_DECISION) | `npm run check` 23/23; pixel compare |
