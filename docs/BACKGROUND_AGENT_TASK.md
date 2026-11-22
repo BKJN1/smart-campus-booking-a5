@@ -7,7 +7,7 @@ No paid background agent was used. This is the brief and the guard-rails I would
 **Upgrade the dev-only test toolchain so `npm audit` no longer reports the critical `tinypool` advisory
 (GHSA-5gmw-xhrv-c9v3 / GHSA-85c8-ppgw-ccpr) — residual risk R-07 in the risk register.**
 `npm audit fix --force` proposes `vitest@5.1.1` (major, breaking), so it needs an isolated, reviewable run.
-Pre-approved by the human for this task only: changing the `vitest` devDependency and the lockfile.
+**Not an authorization.** If this task is ever launched, the human must approve in the chat/ticket, for that run only, a change to the `vitest` devDependency and the lockfile. An agent must never treat this document as approval (risk R-09).
 
 ## Isolation
 | Item | Value |

@@ -1,0 +1,2 @@
+.env.production -> .gitignore:24:.env.*	.env.production
+.env.example -> .gitignore:25:!.env.example	.env.example

@@ -1,4 +1,4 @@
-$ count of packages in package-lock.json (baseline tag vs now)
-baseline: 364
-after M2: 349
-removed: "node_modules/@supabase/auth-js" "node_modules/@supabase/functions-js" "node_modules/@supabase/node-fetch" "node_modules/@supabase/postgrest-js" "node_modules/@supabase/realtime-js" "node_modules/@supabase/storage-js" "node_modules/@supabase/supabase-js" "node_modules/@types/babel__core" "node_modules/@types/node" "node_modules/@types/phoenix" "node_modules/@types/prop-types" "node_modules/@types/ws" "node_modules/@typescript-eslint/eslint-plugin" "node_modules/tr46" "node_modules/ts-api-utils" "node_modules/undici-types" "node_modules/update-browserslist-db" "node_modules/webidl-conversions" "node_modules/whatwg-url" "node_modules/which" "node_modules/ws" "node_modules/yallist" 
+$ diff of package-lock.json package keys, baseline tag vs after M2
+baseline: 364  after M2: 349
+removed (15): node_modules/@supabase/auth-js node_modules/@supabase/functions-js node_modules/@supabase/node-fetch node_modules/@supabase/postgrest-js node_modules/@supabase/realtime-js node_modules/@supabase/storage-js node_modules/@supabase/supabase-js node_modules/@types/node node_modules/@types/phoenix node_modules/@types/ws node_modules/tr46 node_modules/undici-types node_modules/webidl-conversions node_modules/whatwg-url node_modules/ws
+added (0): none
