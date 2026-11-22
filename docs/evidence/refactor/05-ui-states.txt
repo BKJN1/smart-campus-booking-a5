@@ -1,0 +1,11 @@
+[refactor] default 555/660/720 -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.
+[refactor] room blocked -> Unavailable | Check if Room B-204 is free for your requested time slot. This room is currently blocked and cannot be booked.
+[refactor] start empty -> Awaiting input | Check if Room B-204 is free for your requested time slot. Enter a start time.
+[refactor] now=0 start=6e2 end=7e2 (means 600-700, overlaps Intro CS 600-660) -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.
+[refactor] start=660.9 end=720 -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.
+pixel compare baseline vs refactor 1-default IDENTICAL
+pixel compare baseline vs refactor 2-blocked IDENTICAL
+pixel compare baseline vs refactor 3-empty-start DIFF (179, 255, 921, 509)
+pixel compare baseline vs refactor 4-exponent-input DIFF (179, 130, 921, 509)
+3-empty-start: 6153 of 836000 pixels differ, max channel delta 1 (visually identical side-by-side; sub-pixel CSS transition/anti-aliasing)
+4-exponent-input: 6693 of 836000 pixels differ, max channel delta 1 (visually identical side-by-side; sub-pixel CSS transition/anti-aliasing)

@@ -1,0 +1,89 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index ca745d0..38cbdaa 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,6 +1,7 @@
+ import { useMemo, useState } from 'react';
+-import { CalendarCheck, Lock, Unlock, Clock, DoorOpen, CheckCircle2, XCircle } from 'lucide-react';
++import { Lock, Unlock, Clock, DoorOpen } from 'lucide-react';
+ import { checkAvailability, minutesToLabel, type Booking } from '@/lib/booking';
++import { getResultStatus, RESULT_STATUS_VIEW } from '@/components/resultStatus';
+ import { Timeline } from '@/components/Timeline';
+ import { TimeField } from '@/components/TimeField';
+ 
+@@ -39,6 +40,8 @@ export default function App() {
+     return checkAvailability(parsedStart, parsedEnd, parsedCurrent, roomBlocked, bookings);
+   }, [hasValidInput, parsedStart, parsedEnd, parsedCurrent, roomBlocked, bookings]);
+ 
++  const view = RESULT_STATUS_VIEW[getResultStatus(result)];
++
+   return (
+     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+       <div className="mx-auto max-w-3xl px-4 py-8 sm:py-12">
+@@ -122,60 +125,18 @@ export default function App() {
+           {/* Result + timeline */}
+           <section className="lg:col-span-3 space-y-6">
+             {/* Result card */}
+-            <div
+-              className={`rounded-2xl p-5 ring-1 transition ${
+-                result?.available
+-                  ? 'bg-emerald-50 ring-emerald-200'
+-                  : result?.available === false
+-                    ? 'bg-rose-50 ring-rose-200'
+-                    : 'bg-white ring-slate-200'
+-              }`}
+-            >
++            <div className={`rounded-2xl p-5 ring-1 transition ${view.card}`}>
+               <div className="flex items-start gap-3">
+                 <div
+-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+-                    result?.available
+-                      ? 'bg-emerald-500 text-white'
+-                      : result?.available === false
+-                        ? 'bg-rose-500 text-white'
+-                        : 'bg-slate-200 text-slate-400'
+-                  }`}
++                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${view.badge}`}
+                 >
+-                  {result?.available ? (
+-                    <CheckCircle2 size={20} />
+-                  ) : result?.available === false ? (
+-                    <XCircle size={20} />
+-                  ) : (
+-                    <CalendarCheck size={20} />
+-                  )}
++                  <view.icon size={20} />
+                 </div>
+                 <div className="min-w-0 flex-1">
+-                  <p
+-                    className={`text-lg font-bold ${
+-                      result?.available
+-                        ? 'text-emerald-800'
+-                        : result?.available === false
+-                          ? 'text-rose-800'
+-                          : 'text-slate-400'
+-                    }`}
+-                  >
+-                    {result?.available === true
+-                      ? 'Available'
+-                      : result?.available === false
+-                        ? 'Unavailable'
+-                        : 'Awaiting input'}
+-                  </p>
+-                  {result && (
+-                    <p
+-                      className={`text-sm ${
+-                        result.available ? 'text-emerald-700' : 'text-rose-700'
+-                      }`}
+-                    >
+-                      {result.reason}
+-                    </p>
+-                  )}
++                  <p className={`text-lg font-bold ${view.titleText}`}>{view.title}</p>
++                  {result && <p className={`text-sm ${view.reasonText}`}>{result.reason}</p>}
+                   {missingMessage && (
+-                    <p className="text-sm text-slate-500">{missingMessage}.</p>
++                    <p className={`text-sm ${view.reasonText}`}>{missingMessage}.</p>
+                   )}
+                 </div>
+               </div>

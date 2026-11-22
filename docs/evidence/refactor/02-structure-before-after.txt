@@ -1,0 +1,4 @@
+$ grep -c "result?.available" src/App.tsx  (baseline 554fa93 vs after)
+before: 12
+after:  2
+App.tsx lines before: 245  after: 206

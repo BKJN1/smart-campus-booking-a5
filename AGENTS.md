@@ -12,6 +12,7 @@ there is no backend, no login, no network call and no persistence.
 | Layer | File | Rule |
 |---|---|---|
 | Domain (pure) | `src/lib/booking.ts` | `checkAvailability()` = all booking rules (AC1–AC5). No React, no I/O, never mutates inputs. |
+| View-model | `src/components/resultStatus.ts` | Maps a `CheckResult` to one display status (table-driven). Add new states here, not as ternaries in JSX. |
 | UI | `src/App.tsx`, `src/components/*` | Presentation only. Do not put booking rules in components. |
 | Tests | `src/lib/*.test.ts` (Vitest) | One test file per lib module. |
 
