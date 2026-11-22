@@ -1,0 +1,6 @@
+$ npm run typecheck  (run 2026-11-22T16:35Z, node v24.13.1)
+
+> vite-react-typescript-starter@0.0.0 typecheck
+> tsc --noEmit -p tsconfig.app.json
+
+[exit code: 0]

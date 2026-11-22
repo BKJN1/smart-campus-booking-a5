@@ -1,0 +1,2 @@
+$ git grep -n -i supabase -- src index.html vite.config.ts
+[exit code: 1]

@@ -1,0 +1,7 @@
+$ npm test  (run 2026-11-22T16:35Z, node v24.13.1)
+npm error Missing script: "test"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: C:\Users\RBk\AppData\Local\npm-cache\_logs\2026-11-22T16_35_32_754Z-debug-0.log
+[exit code: 1]

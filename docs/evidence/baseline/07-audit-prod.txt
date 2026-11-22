@@ -1,0 +1,15 @@
+$ npm audit --omit=dev
+# npm audit report
+
+ws  8.0.0 - 8.20.1
+Severity: high
+ws: Uninitialized memory disclosure - https://github.com/advisories/GHSA-58qx-3vcg-4xpx
+ws: Memory exhaustion DoS from tiny fragments and data chunks - https://github.com/advisories/GHSA-96hv-2xvq-fx4p
+fix available via `npm audit fix`
+node_modules/ws
+
+1 high severity vulnerability
+
+To address all issues, run:
+  npm audit fix
+[exit code: 1]

@@ -1,0 +1,5 @@
+[baseline] default 555/660/720 -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.
+[baseline] room blocked -> Unavailable | Check if Room B-204 is free for your requested time slot. This room is currently blocked and cannot be booked.
+[baseline] start empty -> Awaiting input | Check if Room B-204 is free for your requested time slot. Enter a start time.
+[baseline] now=0 start=6e2 end=7e2 (means 600-700, overlaps Intro CS 600-660) -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.
+[baseline] start=660.9 end=720 -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.

@@ -1,0 +1,12 @@
+$ npx vitest run  (run 2026-11-22T16:35Z, node v24.13.1)
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mC:/Users/RBk/Downloads/A5_Bekezhan_Argin/smart-campus-booking[39m
+
+ [32m✓[39m src/lib/booking.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m19 passed[39m[22m[90m (19)[39m
+[2m   Start at [22m 21:35:30
+[2m   Duration [22m 1.36s[2m (transform 62ms, setup 0ms, collect 60ms, tests 7ms, environment 0ms, prepare 139ms)[22m
+
+[exit code: 0]

@@ -1,0 +1,5 @@
+$ node -e const r=require('child_process').spawnSync('npm',['audit','--json'],{shell:true});const j=JSON.parse(r.stdout);console.log(JSON.stringify(j.metadata.vulnerabilities));
+{"info":0,"low":2,"moderate":7,"high":14,"critical":2,"total":25}
+(node:26584) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[exit code: 0]
