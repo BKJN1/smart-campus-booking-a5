@@ -20,3 +20,9 @@ vite-react-typescript-starter@0.0.0 C:\Users\RBk\Downloads\A5_Bekezhan_Argin\sma
 
 $ grep -n "serve(" node_modules/vite/dist/node/chunks/*.js | grep -i "esbuild" | head
 (no output above = vite does not call esbuild's serve API)
+
+$ grep -o "esbuild\.[a-zA-Z]*(" node_modules/vite/dist/node/**/*.js | sort | uniq -c
+      2 esbuild.context(
+$ grep -c "\.serve(" node_modules/vite/dist/node/chunks/*.js  (non-zero files only)
+(none)
+Conclusion: Vite uses esbuild.context() for dependency pre-bundling and never calls esbuild's serve() — the GHSA-67mh-4wv8-2f99 attack path (esbuild serve mode) is not used by this project.

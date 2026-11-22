@@ -1,0 +1,10 @@
+$ python scripts/ui-states.py docs/evidence/screenshots final   (commit fecaccd)
+[final] default 555/660/720 -> Available | Check if Room B-204 is free for your requested time slot. Room is available for the selected interval.
+[final] room blocked -> Unavailable | Check if Room B-204 is free for your requested time slot. This room is currently blocked and cannot be booked.
+[final] start empty -> Awaiting input | Check if Room B-204 is free for your requested time slot. Enter a start time.
+[final] now=0 start=6e2 end=7e2 (means 600-700, overlaps Intro CS 600-660) -> Awaiting input | Check if Room B-204 is free for your requested time slot. Enter a start time as whole minutes, Enter an end time as whole minutes.
+[final] start=660.9 end=720 -> Awaiting input | Check if Room B-204 is free for your requested time slot. Enter a start time as whole minutes.
+[exit code: 0]
+RC4 pixel compare baseline vs final 1-default: IDENTICAL
+RC4 pixel compare baseline vs final 2-blocked: IDENTICAL
+RC4 pixel compare baseline vs final 3-empty-start: 40 px differ, max delta 2/255

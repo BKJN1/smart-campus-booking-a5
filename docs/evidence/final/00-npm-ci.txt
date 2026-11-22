@@ -1,0 +1,17 @@
+$ npm ci  (run 2026-11-22T16:47Z, node v24.13.1, commit fecaccd)
+
+added 311 packages, and audited 312 packages in 14s
+
+77 packages are looking for funding
+  run `npm fund` for details
+
+24 vulnerabilities (2 low, 7 moderate, 13 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[exit code: 0]

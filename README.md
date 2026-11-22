@@ -4,8 +4,20 @@ Small React + TypeScript app (originally generated in Bolt.new, then tested and 
 Room B-204 is free for a requested time interval. Times are minutes after midnight (600 = 10:00).
 Sample data only — no backend, no accounts, no real bookings.
 
-Used for **Software Engineering Assignment #05**: agent instructions, pattern decision, AI risk review, mitigations
-and release decision. The report material lives in [`docs/`](docs/).
+Used for **Software Engineering Assignment #05**. Baseline = tag [`baseline`](../../tree/baseline); final = `main`.
+
+| Deliverable | File |
+|---|---|
+| Acceptance criteria | [docs/ACCEPTANCE_CRITERIA.md](docs/ACCEPTANCE_CRITERIA.md) |
+| Agent instructions | [AGENTS.md](AGENTS.md), [CLAUDE.md](CLAUDE.md) |
+| Pattern decision | [docs/PATTERN_DECISION.md](docs/PATTERN_DECISION.md) |
+| Risk register (13 findings) | [docs/RISK_REGISTER.md](docs/RISK_REGISTER.md) |
+| Mitigations M1, M2 + before/after | [docs/MITIGATIONS.md](docs/MITIGATIONS.md) |
+| Agent-readiness audit | [docs/READINESS_AUDIT.md](docs/READINESS_AUDIT.md) |
+| Background-agent safeguards | [docs/BACKGROUND_AGENT_TASK.md](docs/BACKGROUND_AGENT_TASK.md) |
+| Release decision (CONDITIONAL) | [docs/RELEASE_DECISION.md](docs/RELEASE_DECISION.md) |
+| AI reflection / AI-use record | [docs/AI_REFLECTION.md](docs/AI_REFLECTION.md), [docs/AI_USE_RECORD.md](docs/AI_USE_RECORD.md) |
+| Raw command output | [docs/evidence/](docs/evidence/) |
 
 ## Quick start
 ```bash
@@ -30,7 +42,11 @@ src/App.tsx                 page: inputs, result card, timeline, bookings list
 src/components/TimeField.tsx  number input with HH:MM hint
 src/components/Timeline.tsx   24h bar with bookings and the requested interval
 src/lib/booking.ts          domain rules: checkAvailability(), minutesToLabel()
-src/lib/booking.test.ts     19 Vitest cases for AC1–AC5
+src/lib/booking.test.ts     21 Vitest cases for AC1–AC5 (T01–T21)
+src/lib/time.ts             parseMinutes(): strict text → whole minutes
+src/components/resultStatus.ts  result card status view (table-driven)
+scripts/ui-states.py        Playwright UI check for RC4
+scripts/probe-risks.ts      read-only probe used to verify risk claims
 AGENTS.md / CLAUDE.md       instructions for coding agents
 docs/                       assignment evidence (baseline/final outputs, risk register, audit)
 .claude/skills/             two Claude Code skills from Practice 8 (bug-detector, regression-tester)

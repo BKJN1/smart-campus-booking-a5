@@ -1,0 +1,3 @@
+$ npm audit --omit=dev  (run 2026-11-22T16:47Z, node v24.13.1, commit fecaccd)
+found 0 vulnerabilities
+[exit code: 0]
