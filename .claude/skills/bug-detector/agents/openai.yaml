@@ -1,0 +1,2 @@
+name: bug-detector
+description: Diagnose bugs using acceptance criteria and failing tests.
